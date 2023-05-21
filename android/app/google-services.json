@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "256652788791",
+    "project_id": "photo-diary-e45c1",
+    "storage_bucket": "photo-diary-e45c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256652788791:android:2a3dd31df6a0a564c1ebb2",
+        "android_client_info": {
+          "package_name": "com.example.photodiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256652788791-nhgo6escst103ll9obimsikthkt56kbm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF_T_YDN4r0qm-nHaDlHzYo9w6vVkcmKU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256652788791-fs8m3rst73j0bav6o40gel8et7gid90q.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "256652788791-hoh17plti1fo9gt3g0s5drki662k8dig.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.photodiary"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
