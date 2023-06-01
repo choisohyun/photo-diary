@@ -99,27 +99,6 @@ class _State extends State<AuthPage> {
                 color: Colors.grey.shade300,
                 child: Column(children: [
                   Container(height: 10),
-                  const Text("Login with Google",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                  Container(height: 10),
-                  ElevatedButton(
-                      onPressed: () async {
-                        var res = await Auth.signInWithGoogle();
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            backgroundColor:
-                                res == null ? Colors.green : Colors.red,
-                            content: Text(res ?? 'Login Success')));
-                      },
-                      child: const Text("Login with Google")),
-                  Container(height: 10)
-                ]),
-              ),
-              Container(height: 10),
-              Card(
-                color: Colors.grey.shade300,
-                child: Column(children: [
-                  Container(height: 10),
                   const Text("Log out",
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
