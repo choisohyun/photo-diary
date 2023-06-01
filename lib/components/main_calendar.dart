@@ -5,12 +5,27 @@ import 'package:photodiary/const/colors.dart';
 class MainCalendar extends StatelessWidget {
   final OnDaySelected onDaySelected; // ➊ 날짜 선택 시 실행할 함수
   final DateTime selectedDate; // ➋ 선택된 날짜
+  final Map<DateTime, ImageProvider>? photosByDatetime;
 
   const MainCalendar({
     super.key,
     required this.onDaySelected,
     required this.selectedDate,
+    this.photosByDatetime,
   });
+
+  imageBuilder(context, day, focusedDay) {
+    if (photosByDatetime == null || photosByDatetime?.keys == null) {
+      return null;
+    }
+
+    for (DateTime d in photosByDatetime!.keys) {
+      if (day.day == d.day && day.month == d.month && day.year == d.year) {
+        return ImageWidget(photosByDatetime: photosByDatetime, d: d);
+      }
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +40,14 @@ class MainCalendar extends StatelessWidget {
       firstDay: DateTime(1800, 1, 1), // ➊ 첫째 날
       lastDay: DateTime(3000, 1, 1), // ➋ 마지막 날
       focusedDay: DateTime.now(),
+      calendarBuilders: CalendarBuilders(
+        defaultBuilder: (context, day, focusedDay) =>
+            imageBuilder(context, day, focusedDay),
+        prioritizedBuilder: (context, day, focusedDay) =>
+            imageBuilder(context, day, focusedDay),
+        selectedBuilder: (context, day, focusedDay) =>
+            imageBuilder(context, day, focusedDay),
+      ),
       headerStyle: const HeaderStyle(
         // ➊ 달력 최상단 스타일
         titleCentered: true, // 제목 중앙에 위치하기
@@ -71,6 +94,28 @@ class MainCalendar extends StatelessWidget {
           color: primaryColor,
         ),
       ), // ➌ 화면에 보여지는 날
+    );
+  }
+}
+
+class ImageWidget extends StatelessWidget {
+  const ImageWidget({
+    super.key,
+    required this.photosByDatetime,
+    required this.d,
+  });
+
+  final Map<DateTime, ImageProvider<Object>>? photosByDatetime;
+  final DateTime d;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: photosByDatetime?[d] != null
+            ? DecorationImage(image: photosByDatetime![d] as ImageProvider)
+            : null,
+      ),
     );
   }
 }
