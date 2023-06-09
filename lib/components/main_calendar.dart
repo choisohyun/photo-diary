@@ -14,7 +14,7 @@ class MainCalendar extends StatelessWidget {
     this.photosByDatetime,
   });
 
-  imageBuilder(context, day, focusedDay) {
+  imageBuilder(BuildContext context, DateTime day) {
     if (photosByDatetime == null || photosByDatetime?.keys == null) {
       return null;
     }
@@ -42,11 +42,11 @@ class MainCalendar extends StatelessWidget {
       focusedDay: DateTime.now(),
       calendarBuilders: CalendarBuilders(
         defaultBuilder: (context, day, focusedDay) =>
-            imageBuilder(context, day, focusedDay),
+            imageBuilder(context, day),
         prioritizedBuilder: (context, day, focusedDay) =>
-            imageBuilder(context, day, focusedDay),
+            imageBuilder(context, day),
         selectedBuilder: (context, day, focusedDay) =>
-            imageBuilder(context, day, focusedDay),
+            imageBuilder(context, day),
       ),
       headerStyle: const HeaderStyle(
         // ➊ 달력 최상단 스타일
@@ -105,7 +105,7 @@ class ImageWidget extends StatelessWidget {
     required this.d,
   });
 
-  final Map<DateTime, ImageProvider<Object>>? photosByDatetime;
+  final Map<DateTime, ImageProvider>? photosByDatetime;
   final DateTime d;
 
   @override
