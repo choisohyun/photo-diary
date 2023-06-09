@@ -13,7 +13,7 @@ class CalendarController extends GetxController {
     DateTime.now().month,
     DateTime.now().day,
   ).obs;
-  Map<DateTime, ImageProvider> photosByDatetime = {};
+  Map<String, ImageProvider> photosByDatetime = {};
   File? _photo;
   final ImagePicker _picker = ImagePicker();
 
@@ -62,6 +62,16 @@ class CalendarController extends GetxController {
     );
   }
 
+  imageBuilder(DateTime day) {
+    for (String key in photosByDatetime.keys) {
+      DateTime d = DateTime.parse(key);
+      if (day.day == d.day && day.month == d.month && day.year == d.year) {
+        return ImageWidget(d: d);
+      }
+    }
+    return null;
+  }
+
   Future imgFromGallery() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
 
@@ -97,7 +107,7 @@ class CalendarController extends GetxController {
       String url = await (await task).ref.getDownloadURL();
 
       print(url);
-      photosByDatetime[selectedDate.value] = Image.network(
+      photosByDatetime[selectedDate.value.toString()] = Image.network(
         url,
         width: 100,
         height: 100,
