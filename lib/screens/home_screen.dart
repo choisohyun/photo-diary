@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:photodiary/providers/calendar.dart';
 
 class HomeScreen extends StatelessWidget {
-  // ➊ StatelessWidget에서 StatefulWidget으로 전환
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -36,18 +35,10 @@ class Home extends StatelessWidget {
           Icons.add,
         ),
       ),
-      body: SafeArea(
+      body: const SafeArea(
         child: Column(
           children: [
-            GetBuilder<CalendarController>(
-              builder: (c) {
-                return MainCalendar(
-                  selectedDate: c.selectedDate.value,
-                  onDaySelected: c.onDaySelected,
-                  photosByDatetime: c.photosByDatetime,
-                );
-              },
-            ),
+            MainCalendar(),
           ],
         ),
       ),
